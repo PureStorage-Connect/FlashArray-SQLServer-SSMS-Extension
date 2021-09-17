@@ -23,14 +23,15 @@ A compressed zip file is provided that contains all of the components for the ex
 <!-- /wp:separator -->
 
 ### :paperclip: RELEASE NOTES
-- [For all versions release information, please consult this article in our Microsoft Platform Guide](https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/bbb_Microsoft_Integration_Releases/Pure_Storage_FlashArray_Management_Extension_for_Microsoft_SQL_Server_Management_Studio)
+- [For all versions release information, please consult the realease_notes.txt file in this repository or this article in our Microsoft Platform Guide](https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/bbb_Microsoft_Integration_Releases/Pure_Storage_FlashArray_Management_Extension_for_Microsoft_SQL_Server_Management_Studio)
 
 <!-- wp:separator -->
 <hr class="wp-block-separator"/>
 <!-- /wp:separator -->
 
 ### :date: HISTORY
-* [v1.1.x.x] Current release
+* [v1.1.96.0]
+* [v1.1.76.0]
 * [v1.0.444.0]
 * [v1.0.44.0] Original release
 

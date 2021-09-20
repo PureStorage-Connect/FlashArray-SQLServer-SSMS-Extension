@@ -25,12 +25,12 @@ FIXES
 
 4. Keep original registry entries after updating or installing the VSS provider. 
 
-5. Show Iinstall-vssVSS window if a newer VSS Provider vss is available in ssmsSSMS. This prompts the user to update the provider version. 
+5. Show Install-VSS window if a newer VSS Provider vss is available in SSMS. This prompts the user to update the provider version. 
 
 6. Code sign all files. Some files were unsigned. 
 
 KNOWN ISSUES
-1. Removing a backup history in SSMS or when using Remove-PfaBackupHistory, does not delete the associated snapshots on the FlashArray. Cleaning up associated items, such as snapshots on the FlashArray and imported shadow copies in Windows will need to be performed manually.
+1. Removing a backup history in SSMS or when using Remove-PfaBackupHistory, does not delete the associated snapshots on the FlashArray. Cleaning up associated items, such as snapshots on the FlashArray and imported shadow copies in Windows, will need to be performed manually.
 2. Pure FlashArray snapshots are immutable. When mounting a snapshot, it is copied to a new volume and that volume is mounted. Any changes made to this mounted backup will be lost if the backup is dismounted. To preserve any changes, copy the mounted volume to a permanent volume.
 3. Mounting/Dismounting is not supported on SQL Failover clusters. This is because clustered disk resources have a unique disk signature so a snapshot will fail to come online. The procedure to mount a snapshot must be manual and includes the following steps:
    - Copy the snapshot to a new volume, or overwrite an existing volume.

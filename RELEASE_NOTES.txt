@@ -1,4 +1,4 @@
-Pure Storage FlashArray Management for Microsoft SQL Server 1.1.96 Release Notes
+Pure Storage FlashArray Management for Microsoft SQL Server 1.1.100 Release Notes
 
 The "Pure Storage FlashArray Management for Microsoft SQL Server" toolset helps users create application consistent snapshots for Microsoft SQL Server databases that are backed by Pure Storage FlashArray volumes. The functionality is provided through the SQL Server Management Studio GUI and the Pure Storage Backup SDK PowerShell Module. The Volume Shadow Copy Server (VSS) and the Pure Storage VSS Hardware Provider are used to provide the functionality of application consistent snapshots.
 
@@ -11,26 +11,24 @@ This release is compatible with Pure FlashArrays with Purity Operating Environme
 This release requires SQL Server Management Studio version 18.x
 
 INSTALLATION AND UNINSTALLATION
-To install the PowerShell cmdlets, extract and run the PureSSMSInstaller.msi installer file, and follow the instructions.
-An administrator privilege is required to install.
+To install the package, extract and run the PureSSMSInstaller.msi file, and follow the instructions.
+Elevated administrator privileges are required to install.
 To verify the installation, Open SQL Server Management Studio and verify that the "Pure Storage SSMS Extension" menu item is available on the top menu bar.
 The software can be uninstalled from "Programs and Features" in the Windows Control Panel.
 
 FIXES
-1. Mounting a snapshot to a server connected to the FlashArray with Fibre Channel would fail. Fixed a null termination issue that showed up as a bad HostID from the provider. Fixed an issue where the HostId returned by the provider had undefined characters. 
-
-2. Fixed assertion in GetVDSLunInfo() 
-
-3. Improved build numbers in various binaries. 
-
-4. Keep original registry entries after updating or installing the VSS provider. 
-
-5. Show Install-VSS window if a newer VSS Provider vss is available in SSMS. This prompts the user to update the provider version. 
-
-6. Code sign all files. Some files were unsigned. 
+1. Mounting a snapshot to a server connected to the FlashArray with Fibre Channel would fail. 
+2. Fixed a null termination issue that showed up as a bad HostID from the provider.
+3. Fixed an issue where the HostId returned by the provider had undefined characters. 
+4. Fixed assertion in GetVDSLunInfo() 
+5. Improved build numbers in various binaries. 
+6. Keep original registry entries after updating or installing the VSS provider. 
+7. Show Install-VSS window if a newer VSS Provider is available in SSMS. This prompts the user to update the provider version. 
+8. Code sign all files. 
+9. Fixed an issue where the 'norecovery' flag was not honored.
 
 KNOWN ISSUES
-1. Removing a backup history in SSMS or when using Remove-PfaBackupHistory, does not delete the associated snapshots on the FlashArray. Cleaning up associated items, such as snapshots on the FlashArray and imported shadow copies in Windows, will need to be performed manually.
+1. Removing a backup history in SSMS or when using Remove-PfaBackupHistory, does not delete the associated snapshots on the FlashArray. Cleaning up associated items, such as snapshots on the FlashArray and imported shadow copies in Windows will need to be performed manually.
 2. Pure FlashArray snapshots are immutable. When mounting a snapshot, it is copied to a new volume and that volume is mounted. Any changes made to this mounted backup will be lost if the backup is dismounted. To preserve any changes, copy the mounted volume to a permanent volume.
 3. Mounting/Dismounting is not supported on SQL Failover clusters. This is because clustered disk resources have a unique disk signature so a snapshot will fail to come online. The procedure to mount a snapshot must be manual and includes the following steps:
    - Copy the snapshot to a new volume, or overwrite an existing volume.

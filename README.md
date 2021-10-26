@@ -30,6 +30,7 @@ A compressed zip file is provided that contains all of the components for the ex
 <!-- /wp:separator -->
 
 ### :date: HISTORY
+* [v1.1.100.0]
 * [v1.1.96.0]
 * [v1.1.76.0]
 * [v1.0.444.0]

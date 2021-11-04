@@ -1,4 +1,4 @@
-Pure Storage FlashArray Management for Microsoft SQL Server 1.1.100 Release Notes
+Pure Storage FlashArray Management for Microsoft SQL Server 2.0.433 Release Notes
 
 The "Pure Storage FlashArray Management for Microsoft SQL Server" toolset helps users create application consistent snapshots for Microsoft SQL Server databases that are backed by Pure Storage FlashArray volumes. The functionality is provided through the SQL Server Management Studio GUI and the Pure Storage Backup SDK PowerShell Module. The Volume Shadow Copy Server (VSS) and the Pure Storage VSS Hardware Provider are used to provide the functionality of application consistent snapshots.
 
@@ -7,25 +7,34 @@ This release requires a 64-bit operating system.
 This release requires Windows Server 2012R2 or later operating system.
 This release requires PowerShell 5.0 or higher.
 This release requires .NET 4.5.
-This release is compatible with Pure FlashArrays with Purity Operating Environment 5.3 and above.
+This release is compatible with Pure FlashArrays with Purity Operating Environment 4.8 and above.
 This release requires SQL Server Management Studio version 18.x
 
 INSTALLATION AND UNINSTALLATION
-To install the package, extract and run the PureSSMSInstaller.msi file, and follow the instructions.
-Elevated administrator privileges are required to install.
+To install the PowerShell cmdlets, extract and run the PureSSMSInstaller.msi installer file, and follow the instructions.
+An administrator privilege is required to install.
 To verify the installation, Open SQL Server Management Studio and verify that the "Pure Storage SSMS Extension" menu item is available on the top menu bar.
 The software can be uninstalled from "Programs and Features" in the Windows Control Panel.
 
+IMPROVEMENTS
+1. Prefix the computer name and the SQL Server instance name to the database name when discovering SQL Server databases from a computer. This helps when identifying a particular database by instance and enables selective operations on a particular database in the event that multiple databases with the same name exist on the server in different instances.
+2. View PowerShell Script button was added to the Add and Edit Credential windows.
+3. After clicking the Save button in the Add/Edit Credential Window, the Save and Remove button will be disabled while adding a credential is in progress.
+4. Show an error message if there is no available VM in vCenter matching the selected mount computer when attempting to mount a snapshot to a VM.
+5. Keep the backup window open after editing the Backup Configuration and then saving the Backup Configuration when initiated from the Backup window.
+6. Add path validation when changing the PureStorageBackupSDK config path. This can be changed by clicking Pure Storage on the Title bar, and then Extension Settings.
+7. If the volumes in the snapshot set are in a protection group (pgroup), a pgroup snapshot will be taken, volume snapshot(s) will be included in the pgroup snapshot instead of taking a volume snapshot for each volume of the snapshot set directly. It is a recommended best practice to separate the volumes in a snapshot set into its own pgroup, because the provider will append VSS-<snapshot set id> to the snapshots and if other databases outside of the snapshot set exist on volumes in the pgroup, they will also have snapshots taken but will not go through a VSS backup.
+8. The volume(s) in a snapshot set can only be part of one pgroup. If the volume(s) is part of more than one pgroup the Pure VSS HW Provider will throw an error with the following: VSS_E_PROVIDER_VETO.
+9. If the volumes are in a stretched pod in an ActiveCluster, ensure that FlashArray Credentials are created for both FlashArrays.
+10. A configuration setting can be enabled on the provider which changes the default behavior of taking a pgroup snapshot if the volume(s) are part of a pgroup, to only taking individual volume snapshots. Use ‘pureproviderconfig volumesnapshotonly --enable’ to change the behavior from pgroup to volume snapshot, and then restart the provider for the change to take effect. The setting can also be disabled with ‘pureproviderconfig volumesnapshotonly --disable’. If it is disabled a pgroup snapshot will be taken, and if it is enabled, only volume snapshots will be taken. Current status can be found with ‘pureproviderconfig volumesnapshotonly --status’. This setting is stored individually on each SQL Server, and must be set on each SQL Server with pureproviderconfig, which is located in C:\Program Files\Pure Storage\vss\Provider.
+
 FIXES
-1. Mounting a snapshot to a server connected to the FlashArray with Fibre Channel would fail. 
-2. Fixed a null termination issue that showed up as a bad HostID from the provider.
-3. Fixed an issue where the HostId returned by the provider had undefined characters. 
-4. Fixed assertion in GetVDSLunInfo() 
-5. Improved build numbers in various binaries. 
-6. Keep original registry entries after updating or installing the VSS provider. 
-7. Show Install-VSS window if a newer VSS Provider is available in SSMS. This prompts the user to update the provider version. 
-8. Code sign all files. 
-9. Fixed an issue where the 'norecovery' flag was not honored.
+1. Fixed a bug that would cause database enumeration to fail when creating or editing a configuration in SSMS where the SQL Server Instance is named and in a SQL Failover Cluster Instance (FCI).  Get-PfaAvailableDBNames would also fail to enumerate the databases.
+2. Fixed bug where selecting “Use Credential of current Windows User Account” checkbox in the New or Edit Computer Credential would not work.
+3. Fixed a bug that would cause SSMS to freeze if the PureStorageBackupSDK path is not set correctly.
+4. Fixed a bug that VMware® ESXi RDM Support checkbox is not checked when editing an existing configuration enabling RDM support in Backup Configuration window
+5. Fixed a bug that caused the Save button still be disabled after completing the configuration form by filling VM Name textbox in Backup Configuration Window
+6. Fixed a bug where a domain joined VM would fail to mount a snapshot.
 
 KNOWN ISSUES
 1. Removing a backup history in SSMS or when using Remove-PfaBackupHistory, does not delete the associated snapshots on the FlashArray. Cleaning up associated items, such as snapshots on the FlashArray and imported shadow copies in Windows will need to be performed manually.
@@ -39,7 +48,6 @@ KNOWN ISSUES
       * Attribute volume clear readonly
       * Attribute volume clear hidden
       * Attribute volume clear shadowcopy
-4. Mounting a snapshot on a remote server that is different from the server where the snapshot was taken using a mount point will fail. The workaround is to instead use a drive letter.
 
 PERFORMANCE TESTING
 No performance testing was done for this release.

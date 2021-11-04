@@ -1,3 +1,5 @@
+licenses.txt
+
 Open Source Licenses
 
 JSON.NET

@@ -1,0 +1,20 @@
+Pure Storage FlashArray Management for Microsoft SQL Server 2.5.521 Release Notes
+
+The "Pure Storage FlashArray Management for Microsoft SQL Server" toolset helps users create application consistent snapshots for Microsoft SQL Server databases that are backed by Pure Storage FlashArray volumes. The functionality is provided through the SQL Server Management Studio GUI and the Pure Storage Backup SDK PowerShell Module. The Volume Shadow Copy Server (VSS) and the Pure Storage VSS Hardware Provider are used to provide the functionality of application consistent snapshots.
+
+RELEASE COMPATIBILITY
+This release requires a 64-bit operating system.
+This release requires Windows Server 2012 or later operating system.
+This release requires PowerShell 5.0 or higher.
+This release requires .NET 4.5.
+This release is compatible with Pure FlashArrays with Purity Operating Environment 5.3 and above.
+This release requires SQL Server Management Studio version 18.x
+
+INSTALLATION AND UNINSTALLATION
+To install the PureSTorageBackup Plugin and SDK, extract and run the PureSSMSInstaller.msi installer file, and follow the instructions.
+An administrator privilege is required to install.
+To verify the installation, Open SQL Server Management Studio and verify that the "Pure Storage SSMS Extension" menu item is available on the top menu bar.
+The software can be uninstalled from "Programs and Features" in the Windows Control Panel.
+
+FIXES
+1. Fixed a problem where VSS was crashing when there is a disk with invalid or incomplete Vendor information.

@@ -1,3 +1,20 @@
+## End of Life Notice: SQL Server Management Studio Plugin for FlashArray
+Effective Date: June 2025
+
+Overview
+Pure Storage is announcing the end of life (EOL) for the SQL Server Management Studio (SSMS) Plugin for FlashArray. This plugin will no longer receive updates, bug fixes, or technical support after the EOL date.
+
+What This Means
+After the EOL date, the SSMS Plugin for FlashArray will:
+  No longer receive software updates or patches
+  No longer be supported by Pure Storage Technical Support
+  No longer be compatible with future versions of SQL Server Management Studio
+
+Remain available for download until December 31st, 2025 for existing customers
+
+Support and Resources
+For questions about this EOL notice, please contact Pure Storage Support.
+
 ## Pure Storage® FlashArray Management Extension for SQL Server Management Studio
 
 The Pure Storage® FlashArray Management Extension for Microsoft SQL Server Management Studio (aka FA SSMS Extension) is a database backup and restore extension for Microsoft SQL Server Management Studio (SSMS). The extension supports creating Application Consistent snapshots using the Pure Storage Volume Shadow Copy Service (VSS) Hardware Provider. The extension can be used from the SSMS GUI or automated using the Pure Storage Backup SDK Windows PowerShell module. Database Administrators (DBAs) can manage backup and restore operations on local and remote databases from a centralized SSMS deployment.

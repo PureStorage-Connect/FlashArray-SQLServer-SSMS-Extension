@@ -7,10 +7,10 @@ Pure Storage is announcing the end of life (EOL) for the SQL Server Management S
 
 ### What This Means
 
-After the EOL date, the SSMS Plugin for FlashArray will:
-  No longer receive software updates or patches
-  No longer be supported by Pure Storage Technical Support
-  No longer be compatible with future versions of SQL Server Management Studio
+After the EOL date, the SSMS Plugin for FlashArray will:  
+  No longer receive software updates or patches  
+  No longer be supported by Pure Storage Technical Support  
+  No longer be compatible with future versions of SQL Server Management Studio  
 
 Remain available for download until December 31st, 2025 for existing customers
 
